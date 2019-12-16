@@ -1,7 +1,7 @@
-# SWENGS-Homework-Part-2
+# Python-Homework-Part-1-Backend
 
 * Subject: SWENGS
-* Homework2
+* Homework1
 * Author: Andreas RAITH
 * Topic: Foodproducts
 

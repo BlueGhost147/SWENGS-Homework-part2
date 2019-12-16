@@ -1,0 +1,158 @@
+{
+	"info": {
+		"_postman_id": "77798efd-dbdd-4979-b610-6e441ab38cab",
+		"name": "SWENGS_Homework1_Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/products/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"products",
+						""
+					]
+				},
+				"description": "Get all products"
+			},
+			"response": []
+		},
+		{
+			"name": "GET products - Where pk=1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/products/1/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"products",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST products - Create new Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "product_name",
+							"value": "spinache",
+							"type": "text"
+						},
+						{
+							"key": "producer",
+							"value": "Iglo",
+							"type": "text"
+						},
+						{
+							"key": "expiration_date",
+							"value": "2019-11-05",
+							"type": "text"
+						},
+						{
+							"key": "storage",
+							"value": "f",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/products/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT products - Edit Product pk=2",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "product_name",
+							"value": "Milk",
+							"type": "text"
+						},
+						{
+							"key": "producer",
+							"value": "Molkerei Stainz",
+							"type": "text"
+						},
+						{
+							"key": "expiration_date",
+							"value": "2019-11-05",
+							"type": "text"
+						},
+						{
+							"key": "storage",
+							"value": "c",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host}}/products/2/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"products",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE products - pk=3",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{host}}/products/3/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"products",
+						"3",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
