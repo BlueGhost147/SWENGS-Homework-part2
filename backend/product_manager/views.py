@@ -2,10 +2,13 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from product_manager.serializers import ProductSerializer
-from product_manager.models import Product
+from product_manager.serializers import ProductSerializer, ProducerSerializer, WarehouseSerializer
+from product_manager.models import Product, Producer, Warehouse
 
-@api_view(['GET','POST'])
+
+# GET => List all products
+# POST => Create a new product
+@api_view(['GET', 'POST'])
 def product_list(request):
     if request.method == 'GET':
         products = Product.objects.all()
@@ -18,7 +21,11 @@ def product_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-@api_view(['GET','PUT','DELETE'])
+
+# GET => Return the product of the given id
+# PUT => Update a product
+# DELETE => Delete the product
+@api_view(['GET', 'PUT', 'DELETE'])
 def product_update(request, id):
 
     # Get the object to modify
@@ -39,3 +46,18 @@ def product_update(request, id):
         product.delete()
         return Response(status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+# Return a list of all the producers
+@api_view(['GET'])
+def producer_list(request):
+    producer = Producer.objects.all()
+    serializer = ProducerSerializer(producer, many=True)
+    return Response(serializer.data)
+
+# Return a list of all the warehouses
+@api_view(['GET'])
+def warehouse_list(request):
+    warehouses = Warehouse.objects.all()
+    serializer = WarehouseSerializer(warehouses, many=True)
+    return Response(serializer.data)

@@ -1,22 +1,58 @@
 from django.db import models
 
+
 class ProductManager(models.Manager):
     pass
 
-class Product(models.Model):
 
+class ProducerManager(models.Manager):
+    pass
+
+
+class WarehouseManager(models.Manager):
+    pass
+
+
+class Producer(models.Model):
+    name = models.TextField()
+    address = models.TextField(null=True)
+    objects = ProducerManager()
+
+    class Meta:
+        verbose_name_plural = "producers"
+
+    def __str__(self):
+        return self.name
+
+
+class Warehouse(models.Model):
+    name = models.TextField()
+    address = models.TextField(null=True)
+    # Area in m2
+    area = models.PositiveIntegerField()
+    objects = WarehouseManager()
+
+    class Meta:
+        verbose_name_plural = "warehouses"
+
+    def __str__(self):
+        return self.name
+
+
+class Product(models.Model):
     product_name = models.TextField()
-    producer = models.TextField()
-    expiration_date = models.DateField()
+    producer = models.ForeignKey(Producer, on_delete=models.CASCADE)
+    warehouse = models.ForeignKey(Warehouse, on_delete=models.SET_NULL, null=True)
+    expiration_date = models.DateField(null=True)
     objects = ProductManager()
 
     STORAGE_TYPES = (
-        ('n' , 'Normal'),
-        ('c' , 'Fridge'),
-        ('f' , 'Frezzer'),
-        ('o' , 'Other'),
+        ('n', 'Normal'),
+        ('c', 'Fridge'),
+        ('f', 'Freezer'),
+        ('o', 'Other'),
     )
-    storage = models.CharField(max_length=1,choices=STORAGE_TYPES)
+    storage = models.CharField(max_length=1, choices=STORAGE_TYPES)
 
     class Meta:
         verbose_name_plural = "products"
