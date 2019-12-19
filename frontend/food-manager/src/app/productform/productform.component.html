@@ -1,0 +1,33 @@
+
+<form [formGroup]="productFormGroup" class="product-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Product name" formControlName="product_name">
+    <mat-hint align="end">The title of the product</mat-hint>
+    <mat-error *ngIf="productFormGroup.controls.product_name.hasError('required')">Product name is required</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select placeholder="Producer" formControlName="producer">
+      <mat-option [value]="producer.key" *ngFor="let producer of producerService.producerNames | keyvalue">{{producer.value}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="productFormGroup.controls.producer.hasError('required')">Producer is required</mat-error>
+    <mat-hint align="end">The producer of the product</mat-hint>
+  </mat-form-field>
+  <app-date placeholder="Expiration date" formControlName="expiration_date" hint="The expiration date of the product"></app-date>
+
+  <br/>
+  <mat-form-field>
+    <mat-select placeholder="Storage"
+                formControlName="storage">
+      <mat-option [value]="storageOption.id" *ngFor="let storageOption of storageOptions">{{storageOption.name}}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="productFormGroup.controls.storage.hasError('required')">Storage is required</mat-error>
+    <mat-hint align="end">The storage of the product</mat-hint>
+  </mat-form-field>
+  <br/>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!productFormGroup.valid" (click)="createProduct()">
+      <span *ngIf="!productFormGroup.controls.id.value">Create</span>
+      <span *ngIf="productFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>
