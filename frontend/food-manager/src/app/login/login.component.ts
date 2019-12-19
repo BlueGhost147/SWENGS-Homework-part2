@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.http.post('/api/api-token-auth/', this.loginFormGroup.value)
       .subscribe((res: any) => {
         localStorage.setItem('access_token', res.token);
-        this.router.navigate(['movielist']);
+        this.router.navigate(['productlist']);
       }, () => {
         alert('wrong username or password');
       });
