@@ -5,8 +5,6 @@ from drf_yasg.views import get_schema_view
 
 from . import views
 
-from django.contrib import admin
-
 from rest_framework_jwt.views import obtain_jwt_token
 
 
@@ -19,10 +17,30 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('products/', views.product_list),
-    path('products/<int:id>/', views.product_update),
-    path('producer/', views.producer_list),
-    path('warehouse/', views.warehouse_list),
+
+    path('product/list', views.product_list),
+    path('product/options', views.product_options),
+    path('product/create', views.product_create),
+    path('product/<int:product_id>/get', views.product_update),
+    path('product/<int:product_id>/update', views.product_update),
+    path('product/<int:product_id>/delete', views.product_update),
+
+    path('producer/list', views.producer_list),
+    path('producer/options', views.producer_options),
+    path('producer/create', views.producer_create),
+    path('producer/<int:producer_id>/get', views.producer_update),
+    path('producer/<int:producer_id>/update', views.producer_update),
+    path('producer/<int:producer_id>/delete', views.producer_update),
+
+    path('warehouse/list', views.warehouse_list),
+    path('warehouse/options', views.warehouse_options),
+    path('warehouse/create', views.warehouse_create),
+    path('warehouse/<int:warehouse_id>/get', views.warehouse_update),
+    path('warehouse/<int:warehouse_id>/update', views.warehouse_update),
+    path('warehouse/<int:warehouse_id>/delete', views.warehouse_update),
+
+
+    path('storage/options', views.storage_options),
 
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

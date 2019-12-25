@@ -7,6 +7,17 @@
     <button mat-menu-item routerLink="productform">Create
       product</button>
   </mat-menu>
+
+  <button mat-button
+          [matMenuTriggerFor]="warehouseMenu">Warehouse</button>
+  <mat-menu #warehouseMenu="matMenu">
+    <button mat-menu-item routerLink="warehouselist">List
+      warehouses</button>
+    <button mat-menu-item routerLink="warehouseform">Create
+      warehouse</button>
+  </mat-menu>
+
+  <app-logout></app-logout>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

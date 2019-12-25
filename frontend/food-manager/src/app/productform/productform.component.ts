@@ -50,6 +50,7 @@ export class ProductformComponent implements OnInit {
       producer: [null, Validators.required],
       expiration_date: [null],
       storage: [null, Validators.required],
+      dangerous: [null],
     });
 
     const id = this.route.snapshot.paramMap.get('id');

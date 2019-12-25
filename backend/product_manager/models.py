@@ -13,6 +13,10 @@ class WarehouseManager(models.Manager):
     pass
 
 
+class StockLevelManager(models.Manager):
+    pass
+
+
 class Producer(models.Model):
     name = models.TextField()
     address = models.TextField(null=True)
@@ -42,8 +46,9 @@ class Warehouse(models.Model):
 class Product(models.Model):
     product_name = models.TextField()
     producer = models.ForeignKey(Producer, on_delete=models.CASCADE)
-    warehouse = models.ForeignKey(Warehouse, on_delete=models.SET_NULL, null=True)
     expiration_date = models.DateField(null=True)
+    dangerous = models.BooleanField(default=False)
+
     objects = ProductManager()
 
     STORAGE_TYPES = (
@@ -59,3 +64,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+
+class StockLevel(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE)
+    amount = models.PositiveIntegerField()
+
+    objects = StockLevelManager()

@@ -12,6 +12,10 @@ export class ProductService {
     return this.http.get('/api/product/list');
   }
 
+  getProductsOptions() {
+    return this.http.get('/api/product/options');
+  }
+
   getProductById(id) {
     return this.http.get('/api/product/' + id + '/get');
   }

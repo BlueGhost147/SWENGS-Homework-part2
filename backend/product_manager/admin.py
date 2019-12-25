@@ -1,5 +1,5 @@
 from django.contrib import admin
-from product_manager.models import Product, Producer, Warehouse
+from product_manager.models import Product, Producer, Warehouse, StockLevel
 
 
 class ProductAdmin(admin.ModelAdmin):
@@ -20,6 +20,11 @@ class WarehouseAdmin(admin.ModelAdmin):
     sortable_by = ('name', 'address', 'area')
 
 
+class StockLevelAdmin(admin.ModelAdmin):
+    pass
+
+
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Producer, ProducerAdmin)
 admin.site.register(Warehouse, WarehouseAdmin)
+admin.site.register(StockLevel, StockLevelAdmin)

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../service/product.service";
 import {HttpClient} from "@angular/common/http";
 import {ProducerService} from "../service/producer.service";
+import {UserService} from "../service/user.service";
+import {StorageService} from "../service/storage.service";
 
 @Component({
   selector: 'app-productlist',
@@ -11,9 +13,9 @@ import {ProducerService} from "../service/producer.service";
 export class ProductlistComponent implements OnInit {
 
   products: any[];
-  displayedColumns = ['product_name', 'producer', 'expiration_date', 'storage', 'id'];
+  displayedColumns = ['product_name', 'producer_display', 'expiration_date', 'storage_display', 'dangerous', 'id'];
 
-  constructor(private http: HttpClient, private productService: ProductService, public producerService: ProducerService) { }
+  constructor(private http: HttpClient, private productService: ProductService, public userService: UserService) { }
 
   ngOnInit() {
     this.productService.getProducts()
