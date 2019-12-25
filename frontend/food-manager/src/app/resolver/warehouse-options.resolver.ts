@@ -11,6 +11,6 @@ export class WarehouseOptionsResolver implements Resolve<Observable<any>> {
   }
 
   resolve() {
-    return this.warehouseService.getWarehousees();
+    return this.warehouseService.getWarehouses();
   }
 }

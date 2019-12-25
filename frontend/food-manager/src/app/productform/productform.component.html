@@ -2,7 +2,7 @@
 <form [formGroup]="productFormGroup" class="product-form">
   <mat-form-field>
     <input matInput type="text" placeholder="Product name" formControlName="product_name">
-    <mat-hint align="end">The title of the product</mat-hint>
+    <mat-hint align="end">The name of the product</mat-hint>
     <mat-error *ngIf="productFormGroup.controls.product_name.hasError('required')">Product name is required</mat-error>
   </mat-form-field>
   <mat-form-field>
@@ -21,7 +21,7 @@
       <mat-option [value]="storageOption[0]" *ngFor="let storageOption of storageOptions">{{storageOption[1]}}</mat-option>
     </mat-select>
     <mat-error *ngIf="productFormGroup.controls.storage.hasError('required')">Storage is required</mat-error>
-    <mat-hint align="end">The storage of the product</mat-hint>
+    <mat-hint align="end">The storage type of the product</mat-hint>
   </mat-form-field>
   <br/>
   <mat-checkbox formControlName="dangerous">Dangerous</mat-checkbox>

@@ -1,0 +1,28 @@
+
+<form [formGroup]="warehouseFormGroup" class="warehouse-form">
+  <mat-form-field>
+    <input matInput type="text" placeholder="Warehouse name" formControlName="name">
+    <mat-hint align="end">The name of the warehouse</mat-hint>
+    <mat-error *ngIf="warehouseFormGroup.controls.name.hasError('required')">Warehouse name is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Warehouse address" formControlName="address">
+    <mat-hint align="end">The address of the warehouse</mat-hint>
+    <mat-error *ngIf="warehouseFormGroup.controls.address.hasError('required')">Warehouse address is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Area in m²" formControlName="area">
+    <mat-hint align="end">The are of the warehouse in m²</mat-hint>
+    <mat-error *ngIf="warehouseFormGroup.controls.area.hasError('required')">Warehouse area is required</mat-error>
+  </mat-form-field>
+
+  <br/>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!warehouseFormGroup.valid" (click)="createWarehouse()">
+      <span *ngIf="!warehouseFormGroup.controls.id.value">Create</span>
+      <span *ngIf="warehouseFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>

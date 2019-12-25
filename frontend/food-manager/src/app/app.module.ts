@@ -21,6 +21,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {DateComponent} from "./date/date.component";
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { WarehouselistComponent } from './warehouselist/warehouselist.component';
+import { WarehouseformComponent } from './warehouseform/warehouseform.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -33,7 +35,9 @@ export function tokenGetter() {
     ProductlistComponent,
     DateComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    WarehouselistComponent,
+    WarehouseformComponent
   ],
   imports: [
     BrowserModule,

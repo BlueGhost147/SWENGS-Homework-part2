@@ -7,6 +7,8 @@ import {WarehouseOptionsResolver} from "./resolver/warehouse-options.resolver";
 import {ProducerOptionsResolver} from "./resolver/producer-options.resolver";
 import {StorageOptionsResolver} from "./resolver/storage-options-resolver";
 import {AuthGuard} from "./auth.guard";
+import {WarehouselistComponent} from "./warehouselist/warehouselist.component";
+import {WarehouseformComponent} from "./warehouseform/warehouseform.component";
 
 
 const routes: Routes = [
@@ -25,6 +27,9 @@ const routes: Routes = [
       producerOptions: ProducerOptionsResolver,
       storageOptions: StorageOptionsResolver,
     }},
+  {path: 'warehouselist', component: WarehouselistComponent, canActivate: [AuthGuard]},
+  {path: 'warehouseform/:id', component: WarehouseformComponent, canActivate: [AuthGuard]},
+  {path: 'warehouseform', component: WarehouseformComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
 
 ];

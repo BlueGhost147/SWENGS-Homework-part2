@@ -14,12 +14,11 @@ import {WarehouseService} from "../service/warehouse.service";
 export class ProductformComponent implements OnInit {
 
   productFormGroup;
-  age;
   warehouseOptions;
   producerOptions;
   storageOptions;
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute, private productServiceService: ProductService,
+  constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               public producerService: ProducerService,
               private productService: ProductService,
               private warehouseService: WarehouseService) {
@@ -31,19 +30,7 @@ export class ProductformComponent implements OnInit {
     this.warehouseOptions = data.warehouseOptions;
     this.producerOptions = data.producerOptions;
     this.storageOptions = data.storageOptions;
-    /*
-        this.countryService.retrieveCountryOptions().subscribe(
-          (result) => {
-            this.countryOptions = result;
-          }
-        );
 
-        this.actorService.retrieveActorOptions().subscribe(
-          (result) => {
-            this.actorOptions = result;
-          }
-        );
-    */
     this.productFormGroup = this.fb.group({
       id: [null],
       product_name: ['', Validators.required],
@@ -65,12 +52,12 @@ export class ProductformComponent implements OnInit {
     const product = this.productFormGroup.value;
 
     if (product.id) {
-      this.productServiceService.updateProduct(this.productFormGroup.value)
+      this.productService.updateProduct(this.productFormGroup.value)
         .subscribe(() => {
           alert('updated');
         });
     } else {
-      this.productServiceService.createProduct(this.productFormGroup.value)
+      this.productService.createProduct(this.productFormGroup.value)
         .subscribe(() => {
           alert('created');
           // this.router.navigate(["/productform/"+response.id]);

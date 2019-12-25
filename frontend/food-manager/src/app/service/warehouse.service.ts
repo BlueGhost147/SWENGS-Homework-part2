@@ -8,7 +8,7 @@ export class WarehouseService {
 
   constructor(private http: HttpClient) { }
 
-  getWarehousees() {
+  getWarehouses() {
     return this.http.get('/api/warehouse/list');
   }
 
@@ -18,5 +18,17 @@ export class WarehouseService {
 
   getWarehouseById(id) {
     return this.http.get('/api/warehouse/' + id + '/get');
+  }
+
+  createWarehouse(warehouse) {
+    return this.http.post('/api/warehouse/create', warehouse);
+  }
+
+  updateWarehouse(warehouse) {
+    return this.http.put('/api/warehouse/' + warehouse.id + '/update', warehouse);
+  }
+
+  deleteWarehouse(warehouse) {
+    return this.http.delete('/api/warehouse/' + warehouse.id + '/delete')
   }
 }
