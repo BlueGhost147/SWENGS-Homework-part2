@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <button mat-button
+  <button mat-button *ngIf="userService.isLoggedIn.getValue() === true"
           [matMenuTriggerFor]="productMenu">Product</button>
   <mat-menu #productMenu="matMenu">
     <button mat-menu-item routerLink="productlist">List
@@ -8,7 +8,7 @@
       product</button>
   </mat-menu>
 
-  <button mat-button
+  <button mat-button *ngIf="userService.isLoggedIn.getValue() === true"
           [matMenuTriggerFor]="warehouseMenu">Warehouse</button>
   <mat-menu #warehouseMenu="matMenu">
     <button mat-menu-item routerLink="warehouselist">List
@@ -17,7 +17,9 @@
       warehouse</button>
   </mat-menu>
 
-  <app-logout></app-logout>
+  <button mat-button routerLink="login" *ngIf="userService.isLoggedIn.getValue() === false">Login</button>
+
+  <app-logout *ngIf="userService.isLoggedIn.getValue() === true"></app-logout>
 </mat-toolbar>
 
 <router-outlet></router-outlet>
