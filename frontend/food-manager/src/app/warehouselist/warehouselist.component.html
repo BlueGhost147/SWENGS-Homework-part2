@@ -18,8 +18,7 @@
     <th mat-header-cell *matHeaderCellDef>Actions</th>
     <td mat-cell *matCellDef="let warehouse">
       <button mat-button [routerLink]="'/warehouseform/' + warehouse.id">Edit</button>
-      <button mat-button (click)="deleteWarehouse(warehouse)"
-              *ngIf="userService.hasPermission('product_manager.delete_warehouse')">Delete
+      <button mat-button (click)="deleteWarehouse(warehouse)">Delete
       </button>
     </td>
   </ng-container>

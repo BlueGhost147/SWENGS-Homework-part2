@@ -23,7 +23,7 @@ export class WarehouselistComponent implements OnInit {
       });
   }
 
-  deleteProduct(warehouse) {
+  deleteWarehouse(warehouse) {
     this.warehouseService.deleteWarehouse(warehouse)
       .subscribe(() => this.ngOnInit());
   }

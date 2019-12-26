@@ -36,8 +36,12 @@ export class ProductService {
     return this.http.get('/api/stocklevel/' + id + '/product');
   }
 
-  geStockLevelById(id){
+  getStockLevelById(id){
     return this.http.get('/api/stocklevel/' + id + '/get');
+  }
+
+  createStocklevel(stocklevel) {
+    return this.http.post('/api/stocklevel/create', stocklevel);
   }
 
   updateStocklevel(stocklevel) {
