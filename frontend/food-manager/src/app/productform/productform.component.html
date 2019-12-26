@@ -33,3 +33,5 @@
     </button>
   </mat-card-actions>
 </form>
+
+<app-stocklevellist *ngIf="productFormGroup.controls.id.value" [product_id]="product_id"></app-stocklevellist>

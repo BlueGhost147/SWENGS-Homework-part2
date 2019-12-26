@@ -14,9 +14,10 @@ import {WarehouseService} from "../service/warehouse.service";
 export class ProductformComponent implements OnInit {
 
   productFormGroup;
-  warehouseOptions;
+  //warehouseOptions;
   producerOptions;
   storageOptions;
+  product_id;
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute,
               public producerService: ProducerService,
@@ -27,7 +28,7 @@ export class ProductformComponent implements OnInit {
   ngOnInit() {
 
     const data = this.route.snapshot.data;
-    this.warehouseOptions = data.warehouseOptions;
+    //this.warehouseOptions = data.warehouseOptions;
     this.producerOptions = data.producerOptions;
     this.storageOptions = data.storageOptions;
 
@@ -40,10 +41,10 @@ export class ProductformComponent implements OnInit {
       dangerous: [null],
     });
 
-    const id = this.route.snapshot.paramMap.get('id');
+    this.product_id = this.route.snapshot.paramMap.get('id');
 
-    if (id) {
-      this.productService.getProductById(id)
+    if (this.product_id) {
+      this.productService.getProductById(this.product_id)
         .subscribe((response) => this.productFormGroup.patchValue(response));
     }
   }

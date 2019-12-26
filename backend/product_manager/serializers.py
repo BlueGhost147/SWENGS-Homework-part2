@@ -36,6 +36,15 @@ class WarehouseSerializer(serializers.ModelSerializer):
 
 
 class StockLevelSerializer(serializers.ModelSerializer):
+    warehouse_display = serializers.SerializerMethodField()
+    product_display = serializers.SerializerMethodField()
+
     class Meta:
         model = StockLevel
-        fields = ['product', 'warehouse', 'amount']
+        fields = "__all__"
+
+    def get_warehouse_display(self, obj):
+        return obj.warehouse.name
+
+    def get_product_display(self, obj):
+        return obj.product.product_name

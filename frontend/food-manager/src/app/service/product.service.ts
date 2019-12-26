@@ -31,4 +31,20 @@ export class ProductService {
   deleteProduct(product) {
     return this.http.delete('/api/product/' + product.id + '/delete')
   }
+
+  getStockLevel(id){
+    return this.http.get('/api/stocklevel/' + id + '/product');
+  }
+
+  geStockLevelById(id){
+    return this.http.get('/api/stocklevel/' + id + '/get');
+  }
+
+  updateStocklevel(stocklevel) {
+    return this.http.put('/api/stocklevel/' + stocklevel.id + '/update', stocklevel);
+  }
+
+  deleteStocklevel(stocklevel){
+    return this.http.delete('/api/stocklevel/' + stocklevel.id + '/delete');
+  }
 }

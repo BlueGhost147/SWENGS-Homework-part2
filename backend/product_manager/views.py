@@ -3,8 +3,8 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from product_manager.serializers import ProductSerializer, ProducerSerializer, WarehouseSerializer, ProductOptionsSerializer
-from product_manager.models import Product, Producer, Warehouse
+from product_manager.serializers import ProductSerializer, ProducerSerializer, WarehouseSerializer, ProductOptionsSerializer, StockLevelSerializer
+from product_manager.models import Product, Producer, Warehouse, StockLevel
 
 
 # Product
@@ -165,3 +165,34 @@ def warehouse_update(request, warehouse_id):
 def storage_options(request):
     storage_list = Product.STORAGE_TYPES
     return Response(storage_list)
+
+
+# Stocklevel
+@api_view(['GET'])
+def stocklevel_product(request, product_id):
+    stocklevel = StockLevel.objects.filter(product__id=product_id)
+    serializer = StockLevelSerializer(stocklevel, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def stocklevel_update(request, stocklevel_id):
+
+    # Get the object to modify
+    try:
+        stocklevel = StockLevel.objects.get(id=stocklevel_id)
+    except StockLevel.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = StockLevelSerializer(stocklevel)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    elif request.method == 'PUT':
+        serializer = StockLevelSerializer(stocklevel, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+    elif request.method == 'DELETE':
+        stocklevel.delete()
+        return Response(status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

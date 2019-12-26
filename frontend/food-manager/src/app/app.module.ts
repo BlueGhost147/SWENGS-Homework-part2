@@ -9,7 +9,7 @@ import {ProductlistComponent} from './productlist/productlist.component';
 import {
   MatButtonModule,
   MatCardModule,
-  MatCheckboxModule, MatDatepickerModule, MatFormFieldModule,
+  MatCheckboxModule, MatDatepickerModule, MatDialogModule, MatFormFieldModule,
   MatGridListModule, MatInputModule, MatMenuModule, MatNativeDateModule,
   MatOptionModule, MatSelectModule, MatSnackBar, MatSnackBarModule,
   MatTableModule, MatToolbarModule
@@ -17,12 +17,16 @@ import {
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {HttperrorInterceptor} from "./httperror.interceptor";
 import {JwtModule} from "@auth0/angular-jwt";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DateComponent} from "./date/date.component";
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { WarehouselistComponent } from './warehouselist/warehouselist.component';
 import { WarehouseformComponent } from './warehouseform/warehouseform.component';
+import {
+  StocklevellistComponent
+} from './stocklevellist/stocklevellist.component';
+import { StockleveldialogComponent } from './stockleveldialog/stockleveldialog.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -37,7 +41,9 @@ export function tokenGetter() {
     LoginComponent,
     LogoutComponent,
     WarehouselistComponent,
-    WarehouseformComponent
+    WarehouseformComponent,
+    StocklevellistComponent,
+    StockleveldialogComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +73,8 @@ export function tokenGetter() {
       }
     ),
     MatSnackBarModule,
+    MatDialogModule,
+    FormsModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
@@ -74,7 +82,8 @@ export function tokenGetter() {
     multi: true,
     deps: [MatSnackBar]
   }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [StockleveldialogComponent],
 })
 export class AppModule {
 }

@@ -25,6 +25,11 @@ urlpatterns = [
     path('product/<int:product_id>/update', views.product_update),
     path('product/<int:product_id>/delete', views.product_update),
 
+    path('stocklevel/<int:product_id>/product', views.stocklevel_product),
+    path('stocklevel/<int:stocklevel_id>/get', views.stocklevel_update),
+    path('stocklevel/<int:stocklevel_id>/update', views.stocklevel_update),
+    path('stocklevel/<int:stocklevel_id>/delete', views.stocklevel_update),
+
     path('producer/list', views.producer_list),
     path('producer/options', views.producer_options),
     path('producer/create', views.producer_create),

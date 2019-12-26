@@ -1,0 +1,20 @@
+
+<h1 mat-dialog-title>Edit Stocklevel</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-select placeholder="Warehouse" [(ngModel)]="this.data.stocklevel.warehouse">
+      <mat-option [value]="warehouseOption.id" *ngFor="let warehouseOption of warehouseOptions">{{warehouseOption.name}}</mat-option>
+    </mat-select>
+    <mat-hint align="end">The warehouse of the product</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Amount" [(ngModel)]="this.data.stocklevel.amount">
+    <mat-hint align="end">Amount in warehouse</mat-hint>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="saveStock()" [mat-dialog-close]="data.stocklevel.id" cdkFocusInitial>Save</button>
+</div>
+
