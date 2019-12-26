@@ -22,24 +22,15 @@ Clone the git repository and copy the app in the project folder
 git clone <RepositoryLink>
 ````
 
-Add the following line to the urls.py of the project
-````python
-path('',include('product_manager.urls')),
-````
-
-Add the app and the rest_framework to the installed apps in the settings.py of the project
-````python
-INSTALLED_APPS = [
-    (...)
-    'product_manager',
-    'rest_framework',
-]
-````
-
 Migrate the model changed to the db
 ````bash
 python manage.py makemigrations
 python manage.py migrate
+````
+
+Create a superuser
+````bash
+python manage.py createsuperuser
 ````
 
 Run the server
