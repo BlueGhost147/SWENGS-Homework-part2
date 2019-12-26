@@ -1,4 +1,3 @@
-
 <form [formGroup]="warehouseFormGroup" class="warehouse-form">
   <mat-form-field>
     <input matInput type="text" placeholder="Warehouse name" formControlName="name">
@@ -7,9 +6,16 @@
   </mat-form-field>
 
   <mat-form-field>
+    <input matInput type="text" placeholder="Warehouse description" formControlName="description">
+    <mat-hint align="end">The description of the description</mat-hint>
+  </mat-form-field>
+
+
+  <mat-form-field>
     <input matInput type="text" placeholder="Warehouse address" formControlName="address">
     <mat-hint align="end">The address of the warehouse</mat-hint>
-    <mat-error *ngIf="warehouseFormGroup.controls.address.hasError('required')">Warehouse address is required</mat-error>
+    <mat-error *ngIf="warehouseFormGroup.controls.address.hasError('required')">Warehouse address is required
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
@@ -17,6 +23,9 @@
     <mat-hint align="end">The are of the warehouse in m²</mat-hint>
     <mat-error *ngIf="warehouseFormGroup.controls.area.hasError('required')">Warehouse area is required</mat-error>
   </mat-form-field>
+
+  <br/>
+  <mat-checkbox formControlName="externalOwner">External Owner</mat-checkbox>
 
   <br/>
   <mat-card-actions align="center">

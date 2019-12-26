@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {ProductService} from "../service/product.service";
 import {UserService} from "../service/user.service";
 import {WarehouseService} from "../service/warehouse.service";
 

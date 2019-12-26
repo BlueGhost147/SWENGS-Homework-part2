@@ -32,7 +32,7 @@ class ProducerSerializer(serializers.ModelSerializer):
 class WarehouseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Warehouse
-        fields = ['id', 'name', 'address', 'area']
+        fields = "__all__"
 
 
 class StockLevelSerializer(serializers.ModelSerializer):

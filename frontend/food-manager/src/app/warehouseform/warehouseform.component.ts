@@ -24,6 +24,8 @@ export class WarehouseformComponent implements OnInit {
       name: ['', Validators.required],
       address: [null, Validators.required],
       area: [null, Validators.required],
+      externalOwner: [null],
+      description: [null],
     });
 
     const id = this.route.snapshot.paramMap.get('id');

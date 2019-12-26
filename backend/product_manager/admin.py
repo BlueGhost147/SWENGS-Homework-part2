@@ -15,9 +15,9 @@ class ProducerAdmin(admin.ModelAdmin):
 
 
 class WarehouseAdmin(admin.ModelAdmin):
-    list_display = ('name', 'address', 'area')
-    search_fields = ('name', 'address', 'area')
-    sortable_by = ('name', 'address', 'area')
+    list_display = ('name', 'address', 'area', 'externalOwner', 'description')
+    search_fields = ('name', 'address', 'area', 'externalOwner', 'description')
+    sortable_by = ('name', 'address', 'area', 'externalOwner', 'description')
 
 
 class StockLevelAdmin(admin.ModelAdmin):

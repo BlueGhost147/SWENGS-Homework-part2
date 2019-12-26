@@ -31,9 +31,12 @@ class Producer(models.Model):
 
 class Warehouse(models.Model):
     name = models.TextField()
+    description = models.TextField(null=True)
     address = models.TextField(null=True)
     # Area in m2
     area = models.PositiveIntegerField()
+    externalOwner = models.BooleanField(default=False)
+
     objects = WarehouseManager()
 
     class Meta:
