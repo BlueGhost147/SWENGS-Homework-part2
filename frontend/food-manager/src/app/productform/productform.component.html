@@ -21,6 +21,7 @@
       <mat-option [value]="storageOption[0]" *ngFor="let storageOption of storageOptions">{{storageOption[1]}}</mat-option>
     </mat-select>
     <mat-error *ngIf="productFormGroup.controls.storage.hasError('required')">Storage is required</mat-error>
+    <mat-error *ngIf="productFormGroup.controls.storage.hasError('dangerousStorage')">Dangerous goods need the storage type 'Other'</mat-error>
     <mat-hint align="end">The storage type of the product</mat-hint>
   </mat-form-field>
   <br/>

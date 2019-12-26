@@ -1,10 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 import {ProducerService} from "../service/producer.service";
 import {ProductService} from "../service/product.service";
 import {WarehouseService} from "../service/warehouse.service";
+import {ValidateFn} from "codelyzer/walkerFactory/walkerFn";
 
 @Component({
   selector: 'app-productform',
@@ -37,8 +38,10 @@ export class ProductformComponent implements OnInit {
       product_name: ['', Validators.required],
       producer: [null, Validators.required],
       expiration_date: [null],
-      storage: [null, Validators.required],
+      storage: [null, [Validators.required]],
       dangerous: [null],
+    }, {
+      validator: this.dangerousStorageValidatorFunction()
     });
 
     this.product_id = this.route.snapshot.paramMap.get('id');
@@ -63,6 +66,32 @@ export class ProductformComponent implements OnInit {
           alert('created');
           // this.router.navigate(["/productform/"+response.id]);
         });
+    }
+  }
+
+  dangerousStorageValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+
+      if(this.productFormGroup===undefined || this.productFormGroup.controls['dangerous'].value !== true)
+        return null;
+      const forbidden = this.productFormGroup.controls['storage'].value !== 'o';
+      return forbidden ? {'dangerousStorage': {value: control.value}} : null;
+  };
+  }
+
+  dangerousStorageValidatorFunction(): Function {
+    return (formGroup: FormGroup): void => {
+      const field_storage = formGroup.controls['storage'];
+      const field_dangerous = formGroup.controls['dangerous'];
+
+      const forbidden = field_storage.value !== 'o' && (field_dangerous.value === true);
+
+      if(forbidden) {
+        field_storage.setErrors({'dangerousStorage': {value: field_storage.value}});
+      }
+      else {
+        field_storage.setErrors(null);
+      }
     }
   }
 }
