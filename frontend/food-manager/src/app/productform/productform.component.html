@@ -1,4 +1,3 @@
-
 <form [formGroup]="productFormGroup" class="product-form">
   <mat-form-field>
     <input matInput type="text" placeholder="Product name" formControlName="product_name">
@@ -7,21 +6,26 @@
   </mat-form-field>
   <mat-form-field>
     <mat-select placeholder="Producer" formControlName="producer">
-      <mat-option [value]="producerOption.id" *ngFor="let producerOption of producerOptions">{{producerOption.name}}</mat-option>
+      <mat-option [value]="producerOption.id" *ngFor="let producerOption of producerOptions">{{producerOption.name}}
+      </mat-option>
     </mat-select>
     <mat-error *ngIf="productFormGroup.controls.producer.hasError('required')">Producer is required</mat-error>
     <mat-hint align="end">The producer of the product</mat-hint>
   </mat-form-field>
-  <app-date placeholder="Expiration date" formControlName="expiration_date" hint="The expiration date of the product"></app-date>
+  <app-date placeholder="Expiration date" formControlName="expiration_date"
+            hint="The expiration date of the product"></app-date>
 
   <br/>
   <mat-form-field>
     <mat-select placeholder="Storage"
                 formControlName="storage">
-      <mat-option [value]="storageOption[0]" *ngFor="let storageOption of storageOptions">{{storageOption[1]}}</mat-option>
+      <mat-option [value]="storageOption[0]" *ngFor="let storageOption of storageOptions">{{storageOption[1]}}
+      </mat-option>
     </mat-select>
     <mat-error *ngIf="productFormGroup.controls.storage.hasError('required')">Storage is required</mat-error>
-    <mat-error *ngIf="productFormGroup.controls.storage.hasError('dangerousStorage')">Dangerous goods need the storage type 'Other'</mat-error>
+    <mat-error *ngIf="productFormGroup.controls.storage.hasError('dangerousStorage')">Dangerous goods need the storage
+      type 'Other'
+    </mat-error>
     <mat-hint align="end">The storage type of the product</mat-hint>
   </mat-form-field>
   <br/>

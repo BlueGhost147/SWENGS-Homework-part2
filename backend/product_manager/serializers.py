@@ -48,3 +48,9 @@ class StockLevelSerializer(serializers.ModelSerializer):
 
     def get_product_display(self, obj):
         return obj.product.product_name
+
+
+class StockLevelSimpleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = StockLevel
+        fields = "__all__"

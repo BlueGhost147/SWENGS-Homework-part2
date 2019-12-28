@@ -25,7 +25,8 @@ export class StocklevellistComponent implements OnInit {
   @Input() product_id: number;
 
   constructor(private http: HttpClient, private productService: ProductService, public userService: UserService,
-              public dialog: MatDialog, private route: ActivatedRoute,) { }
+              public dialog: MatDialog, private route: ActivatedRoute,) {
+  }
 
   ngOnInit() {
 
@@ -52,5 +53,10 @@ export class StocklevellistComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       this.ngOnInit();
     });
+  }
+
+  createStockLevelDialog() {
+    const newStockLevel = {product: this.product_id};
+    this.openStockLevelDialog(newStockLevel);
   }
 }

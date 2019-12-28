@@ -1,9 +1,10 @@
-
 <h1 mat-dialog-title>Edit Stocklevel</h1>
 <div mat-dialog-content>
   <mat-form-field>
     <mat-select placeholder="Warehouse" [(ngModel)]="this.data.stocklevel.warehouse">
-      <mat-option [value]="warehouseOption.id" *ngFor="let warehouseOption of warehouseOptions">{{warehouseOption.name}}</mat-option>
+      <mat-option [value]="warehouseOption.id" *ngFor="let warehouseOption of warehouseOptions">
+        {{warehouseOption.name}}
+      </mat-option>
     </mat-select>
     <mat-hint align="end">The warehouse of the product</mat-hint>
   </mat-form-field>

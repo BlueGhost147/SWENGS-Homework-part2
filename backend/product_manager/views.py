@@ -3,7 +3,7 @@ from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from product_manager.serializers import ProductSerializer, ProducerSerializer, WarehouseSerializer, ProductOptionsSerializer, StockLevelSerializer
+from product_manager.serializers import ProductSerializer, ProducerSerializer, WarehouseSerializer, ProductOptionsSerializer, StockLevelSerializer,StockLevelSimpleSerializer
 from product_manager.models import Product, Producer, Warehouse, StockLevel
 
 
@@ -36,7 +36,6 @@ def product_create(request):
 # DELETE => Delete the product
 @api_view(['GET', 'PUT', 'DELETE'])
 def product_update(request, product_id):
-
     # Get the object to modify
     try:
         product = Product.objects.get(id=product_id)
@@ -87,7 +86,6 @@ def producer_create(request):
 # DELETE => Delete the producer
 @api_view(['GET', 'PUT', 'DELETE'])
 def producer_update(request, producer_id):
-
     # Get the object to modify
     try:
         producer = Producer.objects.get(id=producer_id)
@@ -106,6 +104,7 @@ def producer_update(request, producer_id):
         producer.delete()
         return Response(status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 # Warehouse
 # Return a list of all the warehouses
@@ -138,7 +137,6 @@ def warehouse_create(request):
 # DELETE => Delete the warehouse
 @api_view(['GET', 'PUT', 'DELETE'])
 def warehouse_update(request, warehouse_id):
-
     # Get the object to modify
     try:
         warehouse = Warehouse.objects.get(id=warehouse_id)
@@ -175,9 +173,17 @@ def stocklevel_product(request, product_id):
     return Response(serializer.data)
 
 
+@api_view(['POST'])
+def stocklevel_create(request):
+    serializer = StockLevelSimpleSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 @api_view(['GET', 'PUT', 'DELETE'])
 def stocklevel_update(request, stocklevel_id):
-
     # Get the object to modify
     try:
         stocklevel = StockLevel.objects.get(id=stocklevel_id)
@@ -185,10 +191,10 @@ def stocklevel_update(request, stocklevel_id):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = StockLevelSerializer(stocklevel)
+        serializer = StockLevelSimpleSerializer(stocklevel)
         return Response(serializer.data, status=status.HTTP_200_OK)
     elif request.method == 'PUT':
-        serializer = StockLevelSerializer(stocklevel, data=request.data)
+        serializer = StockLevelSimpleSerializer(stocklevel, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

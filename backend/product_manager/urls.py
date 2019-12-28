@@ -7,8 +7,6 @@ from . import views
 
 from rest_framework_jwt.views import obtain_jwt_token
 
-
-
 schema_view = get_schema_view(
     openapi.Info(
         title='API',
@@ -26,6 +24,7 @@ urlpatterns = [
     path('product/<int:product_id>/delete', views.product_update),
 
     path('stocklevel/<int:product_id>/product', views.stocklevel_product),
+    path('stocklevel/create', views.stocklevel_create),
     path('stocklevel/<int:stocklevel_id>/get', views.stocklevel_update),
     path('stocklevel/<int:stocklevel_id>/update', views.stocklevel_update),
     path('stocklevel/<int:stocklevel_id>/delete', views.stocklevel_update),
@@ -43,7 +42,6 @@ urlpatterns = [
     path('warehouse/<int:warehouse_id>/get', views.warehouse_update),
     path('warehouse/<int:warehouse_id>/update', views.warehouse_update),
     path('warehouse/<int:warehouse_id>/delete', views.warehouse_update),
-
 
     path('storage/options', views.storage_options),
 

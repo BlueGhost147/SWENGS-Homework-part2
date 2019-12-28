@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getProducts() {
     return this.http.get('/api/product/list');
@@ -32,11 +33,11 @@ export class ProductService {
     return this.http.delete('/api/product/' + product.id + '/delete')
   }
 
-  getStockLevel(id){
+  getStockLevel(id) {
     return this.http.get('/api/stocklevel/' + id + '/product');
   }
 
-  getStockLevelById(id){
+  getStockLevelById(id) {
     return this.http.get('/api/stocklevel/' + id + '/get');
   }
 
@@ -48,7 +49,7 @@ export class ProductService {
     return this.http.put('/api/stocklevel/' + stocklevel.id + '/update', stocklevel);
   }
 
-  deleteStocklevel(stocklevel){
+  deleteStocklevel(stocklevel) {
     return this.http.delete('/api/stocklevel/' + stocklevel.id + '/delete');
   }
 }

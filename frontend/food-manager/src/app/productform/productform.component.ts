@@ -70,13 +70,13 @@ export class ProductformComponent implements OnInit {
   }
 
   dangerousStorageValidator(): ValidatorFn {
-    return (control: AbstractControl): {[key: string]: any} | null => {
+    return (control: AbstractControl): { [key: string]: any } | null => {
 
-      if(this.productFormGroup===undefined || this.productFormGroup.controls['dangerous'].value !== true)
+      if (this.productFormGroup === undefined || this.productFormGroup.controls['dangerous'].value !== true)
         return null;
       const forbidden = this.productFormGroup.controls['storage'].value !== 'o';
       return forbidden ? {'dangerousStorage': {value: control.value}} : null;
-  };
+    };
   }
 
   dangerousStorageValidatorFunction(): Function {
@@ -86,7 +86,7 @@ export class ProductformComponent implements OnInit {
 
       const forbidden = field_storage.value !== 'o' && (field_dangerous.value === true);
 
-      if(forbidden) {
+      if (forbidden) {
         field_storage.setErrors({'dangerousStorage': {value: field_storage.value}});
       }
       else {
