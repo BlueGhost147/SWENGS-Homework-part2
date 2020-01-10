@@ -3,23 +3,25 @@
 * Subject: SWENGS
 * Homework2
 * Author: Andreas RAITH
-* Topic: Foodproducts
+* Topic: Foodproducts with stock level management
+* Special feature: Mat-Dialog
 
 ## Requirments
 * python 3.8.0 with pip installed
 * A Virtual Environment with Django 2.2.6
 * A working django project
 
-### Optional:
-Use the requriments.txt to resolve the dependencies (after cloning the repo)
-````bash
-pip install -r requirements.txt
-````
+### Backend setup
 
-## Setup
+
 Clone the git repository and copy the app in the project folder
 ````bash
 git clone <RepositoryLink>
+````
+
+Use the requriments.txt to resolve the dependencies (after cloning the repo)
+````bash
+pip install -r requirements.txt
 ````
 
 Migrate the model changed to the db
@@ -36,6 +38,13 @@ python manage.py createsuperuser
 Run the server
 ````bash
 python manage.py runserver
+````
+
+### Frontend setup
+````bash
+npm install --save-dev @angular-devkit/build-angular
+npm install @auth0/angular-jwt
+ng add @angular/material
 ````
 
 ### Troubleshooting
